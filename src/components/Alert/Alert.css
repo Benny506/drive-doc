@@ -1,0 +1,117 @@
+.sv-alerts {
+    position: fixed;
+    top: 100px;
+    right: 24px;
+    z-index: 11000;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 400px;
+    width: calc(100% - 48px);
+}
+
+.sv-alert {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    padding: 16px;
+    padding-right: 48px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.sv-alert__icon {
+    margin-right: 14px;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+}
+
+.sv-alert__body {
+    flex: 1;
+}
+
+.sv-alert__title {
+    font-weight: 700;
+    margin-bottom: 4px;
+    font-size: 15px;
+    font-family: var(--font-heading);
+}
+
+.sv-alert__message {
+    font-size: 14px;
+    color: #4b5563;
+    line-height: 1.4;
+}
+
+.sv-alert__close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: transparent;
+    border: none;
+    color: #9ca3af;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s;
+}
+
+.sv-alert__close:hover {
+    color: #4b5563;
+}
+
+/* Variants */
+.sv-alert--success .sv-alert__icon {
+    color: #10b981;
+}
+
+.sv-alert--success {
+    border-left: 4px solid #10b981;
+}
+
+.sv-alert--error .sv-alert__icon {
+    color: #ef4444;
+}
+
+.sv-alert--error {
+    border-left: 4px solid #ef4444;
+}
+
+.sv-alert--warning .sv-alert__icon {
+    color: #f59e0b;
+}
+
+.sv-alert--warning {
+    border-left: 4px solid #f59e0b;
+}
+
+.sv-alert--info .sv-alert__icon {
+    color: #4f46e5;
+}
+
+.sv-alert--info {
+    border-left: 4px solid #4f46e5;
+}
+
+/* Progress Bar */
+.sv-alert__progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background: rgba(0, 0, 0, 0.05);
+    width: 100%;
+}
+
+.sv-alert__progress-fill {
+    height: 100%;
+    background: currentColor;
+    opacity: 0.3;
+}

@@ -1,0 +1,159 @@
+/* Import Bootstrap */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+/* Import Custom Styles */
+@import './styles/font.css';
+@import './styles/bootstrap-override.css';
+@import './styles/theme.css';
+
+:root {
+  --primary-glow: radial-gradient(rgba(79, 70, 229, 0.15), rgba(79, 70, 229, 0));
+  --secondary-glow: radial-gradient(rgba(124, 58, 237, 0.1), rgba(124, 58, 237, 0));
+}
+
+html,
+body {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: hidden;
+  background: #f8fafc;
+  color: #1e293b;
+}
+
+#root {
+  width: 100% !important;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  padding-top: 80px;
+  /* Space for the fixed navbar */
+}
+
+/* Premium Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Section Backgrounds */
+.bg-glow-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-glow-section::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  right: -10%;
+  width: 400px;
+  height: 400px;
+  background: var(--primary-glow);
+  filter: blur(80px);
+  z-index: -1;
+}
+
+.bg-glow-section::after {
+  content: '';
+  position: absolute;
+  bottom: -10%;
+  left: -10%;
+  width: 400px;
+  height: 400px;
+  background: var(--secondary-glow);
+  filter: blur(80px);
+  z-index: -1;
+}
+
+/* Global Transitions */
+a,
+button {
+  transition: all 0.3s ease;
+}
+
+/* Dashboard & Visual Utilities */
+.dashboard-wrapper {
+  background: #f1f5f9;
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hidden {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.transition-all {
+  transition: all 0.3s ease;
+}
+
+.hover-bg-white:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.hover-bg-danger:hover {
+  background-color: rgba(239, 68, 68, 0.1) !important;
+}
+
+.smaller {
+  font-size: 0.75rem;
+}
+
+.tracking-wider {
+  letter-spacing: 0.05em;
+}
+
+.shadow-2xl {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.text-gradient {
+  background: linear-gradient(to right, #4f46e5, #9333ea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Custom React Menu (szh-menu) Styles */
+.custom-dropdown-menu.szh-menu {
+  min-width: 180px;
+  background: white;
+}
+
+.custom-dropdown-menu .szh-menu__item {
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  color: #1e293b;
+}
+
+.custom-dropdown-menu .szh-menu__item--hover {
+  background-color: #f1f5f9;
+}
+
+.custom-dropdown-menu .szh-menu__item--danger {
+  color: #ef4444;
+}
+
+.custom-dropdown-menu .szh-menu__item--danger:hover {
+  background-color: #fef2f2;
+}
