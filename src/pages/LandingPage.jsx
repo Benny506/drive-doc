@@ -1,4 +1,5 @@
 import { Container, Row, Col, Card, Button, Badge, Carousel } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 import { HiOutlineBell, HiOutlineShieldCheck, HiOutlineCheckCircle, HiOutlineClock, HiOutlineDocumentSearch, HiOutlineLightningBolt } from 'react-icons/hi'
 import { motion } from 'motion/react'
 import heroImg from '../assets/hero-premium.png'
@@ -26,6 +27,17 @@ const LandingPage = () => {
         }
     }
 
+    const scrollToSection = (e, id) => {
+        e.preventDefault()
+        const element = document.getElementById(id)
+        if (element) {
+            const offset = 100
+            const elementPosition = element.getBoundingClientRect().top
+            const offsetPosition = elementPosition + window.pageYOffset - offset
+            window.scrollTo({ top: offsetPosition, behavior: "smooth" })
+        }
+    }
+
     return (
         <div className="landing-wrapper w-100 overflow-hidden">
             {/* Hero Section */}
@@ -49,12 +61,12 @@ const LandingPage = () => {
                                     Experience the future of vehicle document management. Automated reminders, seamless processing, and real-time status tracking—all in one premium dashboard.
                                 </p>
                                 <div className="d-flex flex-wrap gap-4">
-                                    <Button size="lg" className="rounded-pill px-5 py-3 shadow-lg hover-lift fw-bold">
+                                    <Button as={Link} to="/track" size="lg" className="rounded-pill px-5 py-3 shadow-lg hover-lift fw-bold border-0">
                                         Start Tracking Now
                                     </Button>
-                                    <Button variant="outline-dark" size="lg" className="rounded-pill px-5 py-3 fw-bold">
-                                        Watch Demo
-                                    </Button>
+                                    <a href="#about" onClick={(e) => scrollToSection(e, 'about')} className="btn btn-outline-dark btn-lg rounded-pill px-5 py-3 fw-bold">
+                                        Who We Are
+                                    </a>
                                 </div>
                             </motion.div>
                         </Col>
@@ -181,6 +193,83 @@ const LandingPage = () => {
                 </Container>
             </section>
 
+            {/* About Us - Mission & Vision */}
+            <section id="about" className="py-5 bg-white overflow-hidden">
+                <Container className="py-5">
+                    <Row className="align-items-center g-5">
+                        <Col lg={6}>
+                            <motion.div
+                                initial={{ opacity: 0, x: -50 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.8 }}
+                            >
+                                <Badge bg="primary" className="mb-3 px-3 py-2 rounded-pill bg-opacity-10 text-primary fw-bold text-uppercase tracking-wider">
+                                    Our Story
+                                </Badge>
+                                <h2 className="display-4 fw-extrabold mb-4">Driving Efficiency Through Innovation</h2>
+                                <p className="lead text-secondary mb-4">
+                                    DriveDoc was founded on a simple realization: vehicle compliance shouldn't be a burden. In an era of rapid digital transformation, we've built a bridge between complex bureaucracy and seamless user experience.
+                                </p>
+                                <Row className="mt-5 g-4">
+                                    <Col sm={6}>
+                                        <Card className="border-0 shadow-sm rounded-4 h-100 p-3 bg-light hover-lift">
+                                            <div className="d-inline-flex p-3 rounded-4 bg-primary bg-opacity-10 text-primary mb-3 fit-content">
+                                                <HiOutlineShieldCheck size={32} />
+                                            </div>
+                                            <h5 className="fw-bold">Our Mission</h5>
+                                            <p className="small text-secondary mb-0">To eliminate compliance-related stress for vehicle owners through intelligent automation and real-time data transparency.</p>
+                                        </Card>
+                                    </Col>
+                                    <Col sm={6}>
+                                        <Card className="border-0 shadow-sm rounded-4 h-100 p-3 bg-light hover-lift">
+                                            <div className="d-inline-flex p-3 rounded-4 bg-success bg-opacity-10 text-success mb-3 fit-content">
+                                                <HiOutlineCheckCircle size={32} />
+                                            </div>
+                                            <h5 className="fw-bold">Our Vision</h5>
+                                            <p className="small text-secondary mb-0">To become the global standard for digital vehicle documentation, creating a world where paperwork is a relic of the past.</p>
+                                        </Card>
+                                    </Col>
+                                </Row>
+                            </motion.div>
+                        </Col>
+                        <Col lg={6}>
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true }}
+                                className="ps-lg-5"
+                            >
+                                <div className="position-relative">
+                                    <div className="glass-card p-5 rounded-5 border-0 shadow-2xl bg-gradient bg-primary text-white overflow-hidden">
+                                        <div className="position-relative z-1">
+                                            <h3 className="fw-bold mb-4">Why choose DriveDoc?</h3>
+                                            <ul className="list-unstyled mb-0">
+                                                {[
+                                                    "Real-time database synchronization",
+                                                    "Automated expiry trajectory mapping",
+                                                    "Multi-channel alert distribution",
+                                                    "End-to-end encryption by default",
+                                                    "Intuitive administrative dashboard"
+                                                ].map((item, i) => (
+                                                    <li key={i} className="mb-3 d-flex align-items-center">
+                                                        <HiOutlineCheckCircle className="me-3 text-white opacity-75" size={24} />
+                                                        <span className="fw-medium">{item}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                        <div className="position-absolute top-0 end-0 p-5 mt-n5 me-n5 opacity-10">
+                                            <HiOutlineDocumentSearch size={200} />
+                                        </div>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        </Col>
+                    </Row>
+                </Container>
+            </section>
+
             {/* How it Works - Modern Split Layout */}
             <section id="how-it-works" className="py-5 bg-dark text-white overflow-hidden">
                 <Container className="py-5">
@@ -250,8 +339,8 @@ const LandingPage = () => {
                 </Container>
             </section>
 
-            {/* CTAs / About Section */}
-            <section id="about" className="py-5 bg-glow-section">
+            {/* Informative CTA Section */}
+            <section id="cta" className="py-5 bg-glow-section border-top">
                 <Container className="py-5 text-center">
                     <motion.div
                         initial={{ scale: 0.9, opacity: 0 }}
@@ -259,14 +348,30 @@ const LandingPage = () => {
                         viewport={{ once: true }}
                         className="glass-card p-5 border-0 shadow-2xl"
                     >
-                        <h2 className="display-4 fw-bold mb-4">Ready to upgrade your drive?</h2>
-                        <p className="lead text-secondary mb-5 mx-auto" style={{ maxWidth: '700px' }}>
-                            Join thousands of vehicle owners who have traded compliance stress for the DriveDoc peace of mind.
+                        <h2 className="display-4 fw-bold mb-4">Unmatched Compliance Reliability</h2>
+                        <p className="lead text-secondary mb-5 mx-auto" style={{ maxWidth: '800px' }}>
+                            Our platform processes thousands of vehicle particulars every day with a 99.9% accuracy rate. By centralizing your fleet data, you reduce human error, avoid costly late fees, and ensure your operations never grind to a halt due to expired documentation.
                         </p>
-                        <div className="d-flex justify-content-center gap-3 flex-wrap">
-                            <Button size="lg" className="rounded-pill px-5 py-3 fw-bold hover-lift">Get Started Free</Button>
-                            <Button variant="outline-dark" size="lg" className="rounded-pill px-5 py-3 fw-bold">Contact Enterprise</Button>
-                        </div>
+                        <Row className="justify-content-center g-4">
+                            <Col md={4}>
+                                <div className="p-3">
+                                    <h3 className="fw-extrabold text-primary mb-1">24/7</h3>
+                                    <span className="text-secondary smaller fw-bold text-uppercase">Automated Monitoring</span>
+                                </div>
+                            </Col>
+                            <Col md={4}>
+                                <div className="p-3">
+                                    <h3 className="fw-extrabold text-primary mb-1">Secure</h3>
+                                    <span className="text-secondary smaller fw-bold text-uppercase">Encrypted Cloud Storage</span>
+                                </div>
+                            </Col>
+                            <Col md={4}>
+                                <div className="p-3">
+                                    <h3 className="fw-extrabold text-primary mb-1">Global</h3>
+                                    <span className="text-secondary smaller fw-bold text-uppercase">Multi-Region Compliant</span>
+                                </div>
+                            </Col>
+                        </Row>
                     </motion.div>
                 </Container>
             </section>
@@ -280,9 +385,9 @@ const LandingPage = () => {
                         </Col>
                         <Col md={6} className="text-center text-md-end">
                             <div className="d-flex justify-content-center justify-content-md-end gap-3 mb-3">
-                                <a href="#home" className="text-muted text-decoration-none hover-primary">Home</a>
-                                <a href="#features" className="text-muted text-decoration-none hover-primary">Features</a>
-                                <a href="#about" className="text-muted text-decoration-none hover-primary">About</a>
+                                <a href="#home" onClick={(e) => scrollToSection(e, 'home')} className="text-muted text-decoration-none hover-primary">Home</a>
+                                <a href="#features" onClick={(e) => scrollToSection(e, 'features')} className="text-muted text-decoration-none hover-primary">Features</a>
+                                <a href="#about" onClick={(e) => scrollToSection(e, 'about')} className="text-muted text-decoration-none hover-primary">About</a>
                             </div>
                             <small className="text-muted">© 2026 DriveDoc. All rights reserved.</small>
                         </Col>

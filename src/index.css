@@ -12,6 +12,11 @@
 }
 
 html,
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
 body {
   width: 100% !important;
   margin: 0 !important;

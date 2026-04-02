@@ -12,6 +12,21 @@ const Header = () => {
         manualLogout(dispatch)
     }
 
+    const scrollToSection = (e, id) => {
+        e.preventDefault()
+        const element = document.getElementById(id)
+        if (element) {
+            const offset = 100 // Matches scroll-padding-top
+            const elementPosition = element.getBoundingClientRect().top
+            const offsetPosition = elementPosition + window.pageYOffset - offset
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth"
+            })
+        }
+    }
+
     return (
         <Navbar expand="lg" fixed="top" className="glass-navbar py-3">
             <Container>
@@ -35,10 +50,10 @@ const Header = () => {
                     </Offcanvas.Header>
                     <Offcanvas.Body>
                         <Nav className="justify-content-end flex-grow-1 pe-3 align-items-center">
-                            <Nav.Link href="/#home" className="px-3 fw-medium">Home</Nav.Link>
-                            <Nav.Link href="/#features" className="px-3 fw-medium">Features</Nav.Link>
-                            <Nav.Link href="/#how-it-works" className="px-3 fw-medium">How it works</Nav.Link>
-                            <Nav.Link href="/#about" className="px-3 fw-medium">About</Nav.Link>
+                            <Nav.Link href="#home" onClick={(e) => scrollToSection(e, 'home')} className="px-3 fw-medium">Home</Nav.Link>
+                            <Nav.Link href="#features" onClick={(e) => scrollToSection(e, 'features')} className="px-3 fw-medium">Features</Nav.Link>
+                            <Nav.Link href="#how-it-works" onClick={(e) => scrollToSection(e, 'how-it-works')} className="px-3 fw-medium">How it works</Nav.Link>
+                            <Nav.Link href="#about" onClick={(e) => scrollToSection(e, 'about')} className="px-3 fw-medium">About</Nav.Link>
 
                             {!user ? (
                                 <Nav.Link as={Link} to="/admin" className="px-3 fw-medium text-primary">Admin Portal</Nav.Link>
