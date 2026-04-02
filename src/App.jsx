@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { HashRouter, Routes, Route } from 'react-router-dom'
 import Header from './components/Header'
 import LandingPage from './pages/LandingPage'
 import PublicSearch from './pages/PublicSearch'
@@ -15,7 +15,7 @@ function App() {
   const globalLoading = useSelector((state) => state.ui.globalLoading)
 
   return (
-    <Router>
+    <HashRouter>
       <AutoLogin>
         <div className="app-container">
           <GlobalAlerts />
@@ -41,7 +41,7 @@ function App() {
           </Routes>
         </div>
       </AutoLogin>
-    </Router>
+    </HashRouter>
   )
 }
 
